@@ -14,6 +14,20 @@ function findCategoryById($id) {
     return null;
 }
 
+// Renvoi la catégorie correspondante à au jeton (slug)
+// ou NULL si pas de résultat
+function findCategoryBySlug($slug) {
+    global $data_blog;
+
+    foreach ($data_blog['categories'] as $category) {
+        if ($category['slug'] == $slug) {
+            return $category;
+        }
+    }
+
+    return null;
+}
+
 // Renvoi l'auteur correspondant à l'identifiant $id
 // ou NULL si pas de résultat
 function findAuthorById($id) {
@@ -21,6 +35,20 @@ function findAuthorById($id) {
 
     if (isset($data_blog['authors'][$id])) {
         return $data_blog['authors'][$id];
+    }
+
+    return null;
+}
+
+// Renvoi l'auteur correspondante à au jeton (slug)
+// ou NULL si pas de résultat
+function findAuthorBySlug($slug) {
+    global $data_blog;
+
+    foreach ($data_blog['authors'] as $author) {
+        if ($author['slug'] == $slug) {
+            return $author;
+        }
     }
 
     return null;
@@ -38,8 +66,22 @@ function findPostById($id) {
     return null;
 }
 
+// Renvoi l'article correspondante à au jeton (slug)
+// ou NULL si pas de résultat
+function findPostBySlug($slug) {
+    global $data_blog;
+
+    foreach ($data_blog['posts'] as $post) {
+        if ($post['slug'] == $slug) {
+            return $post;
+        }
+    }
+
+    return null;
+}
+
 // Renvoi la liste (tableau) des articles de la catégorie $categoryId
-function finPostsByCategoryId($categoryId) {
+function findPostsByCategoryId($categoryId) {
     global $data_blog;
 
     $allPosts = $data_blog['posts'];
@@ -149,19 +191,34 @@ function renderPostThumb(array $post) {
 
 // ================================================== NAVIGATION =======================================================
 
-// Renvoi l'URL de détail pour la catégory
+// Renvoi l'URL de liste pour les auteurs
+function getHomeUrl() {
+    return '/';
+}
+
+// Renvoi l'URL de liste pour les auteurs
+function getCategoriesUrl() {
+    return '/categories';
+}
+
+// Renvoi l'URL de détail pour la catégorie
 function getCategoryUrl(array $category) {
-    return '/category_detail.php?id=' . $category['id'];
+    return '/categories/' . $category['slug'];
+}
+
+// Renvoi l'URL de liste pour les catégories
+function getAuthorsUrl() {
+    return '/authors';
 }
 
 // Renvoi l'URL de détail pour l'auteur
 function getAuthorUrl(array $author) {
-    return '/author_detail.php?id=' . $author['id'];
+    return '/authors/' . $author['slug'];
 }
 
 // Renvoi l'URL de détail pour l'article
 function getPostUrl(array $post) {
-    return '/post_detail.php?id=' . $post['id'];
+    return '/posts/' . $post['slug'];
 }
 
 // ================================================== UTILITAIRE =======================================================
@@ -177,7 +234,7 @@ function summary($html, $length = 128) {
     return $string;
 }
 
-// Génére une page d'erreur 404
+// Génère une page d'erreur 404
 function error404() {
     http_response_code(404);
     echo 'Page introuvable';

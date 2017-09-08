@@ -20,6 +20,10 @@
 // - image     (string)
 // - slug      (string)
 
+// /category_detail.php?id
+
+// /categories/accusantium-neque
+
 $data_blog = [
     'categories' => [
         1 => [

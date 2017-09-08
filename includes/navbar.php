@@ -8,12 +8,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index.php">Blog.dev</a>
+            <a class="navbar-brand" href="<?= getHomeUrl() ?>">Blog.dev</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/category_list.php">Catégories</a></li>
-                <li><a href="/author_list.php">Auteurs</a></li>
+                <li><a href="<?= getCategoriesUrl() ?>">Catégories</a></li>
+                <li><a href="<?= getAuthorsUrl() ?>">Auteurs</a></li>
             </ul>
         </div>
     </div>
