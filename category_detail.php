@@ -1,43 +1,28 @@
-<!DOCTYPE html>
+<?php
+
+include 'data/data.php';
+include 'includes/functions.php';
+
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+if (null === $category = findCategoryById($id)) {
+    error404();
+}
+
+?><!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Blog.dev</title>
-
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet">
+    <?php include 'includes/head.php'; ?>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/index.php">Blog.dev</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/category_list.php">Catégories</a></li>
-                    <li><a href="/author_list.php">Auteurs</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php include 'includes/navbar.php'; ?>
 
     <div class="jumbotron">
         <div class="container">
-            <h1>[Category title]</h1>
-            <p>[Category description]</p>
+            <h1><?= $category['title'] ?></h1>
+            <?= $category['description'] ?>
         </div>
     </div>
 
@@ -47,62 +32,21 @@
             <!-- Start main column -->
             <div class="col-md-9">
                 <!-- Post list for this category -->
-                <?php for ($p = 1; $p < 6; $p++) { ?>
-                    <div class="thumb">
-                        <h2>
-                            <a href="#">
-                                [Post #<?= $p ?> title]
-                            </a>
-                        </h2>
-                        <p>
-                            Le <em>[Post #<?= $p ?> date]</em>
-                            par <strong>[Post #<?= $p ?> author]</strong>
-                            dans <strong>[Post #<?= $p ?> category]</strong>
-                        </p>
-                        <p>[Post #<?= $p ?> summary]</p>
-                        <p>
-                            <a href="#" class="btn btn-sm btn-primary">
-                                Lire la suite
-                            </a>
-                        </p>
-                    </div>
-                <?php } ?>
+                <?php
+                $categoryPosts = finPostsByCategoryId($id);
+
+                foreach ($categoryPosts as $post) {
+                    renderPostThumb($post);
+                }
+                ?>
             </div>
             <!-- End main column  -->
 
-            <!-- Start side column -->
-            <div class="col-md-3">
-                <div class="side-block">
-                    <!-- Categories menu -->
-                    <ul class="nav nav-pills nav-stacked">
-                        <?php for ($c = 1; $c < 5; $c++) { ?>
-                            <li>
-                                <a href="#">
-                                    [Category #<?= $c ?> title] (<?php echo rand(4, 10); ?>)
-                                </a>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                </div>
-                <div class="side-block">
-                    <!-- Author menu -->
-                    <ul class="nav nav-pills nav-stacked">
-                        <?php for ($a = 1; $a < 5; $a++) { ?>
-                            <li>
-                                <a href="#">
-                                    [Author #<?= $a ?> full name] (<?php echo rand(4, 10); ?>)
-                                </a>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                </div>
-            </div>
-            <!-- End side column -->
+            <?php include 'includes/sidebar.php'; ?>
 
         </div>
     </div>
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <?php include 'includes/scripts.php'; ?>
 </body>
 </html>
