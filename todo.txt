@@ -1,0 +1,98 @@
+Éléments de mise en page :
+    • Post thumb :
+        Le titre est un lien vers le détail de l'article.
+        Le résumé (summary) est les 128 premiers caractères du champ 'content', sans balises HTML.
+        Le bouton "Lire la suite" est un lien vers le détail de l'article.
+
+    • Category thumb:
+        Le titre est un lien vers le détail de la catégorie.
+        Le résumé (summary) est les 128 premiers caractères du champ 'description', sans balises HTML.
+        Le bouton "Voir tous les articles de '<category title>'" est un lien vers le détail de la catégorie.
+
+    • Author thumb:
+        Le nom complet est un lien vers le détail de l'auteur.
+        Le résumé (summary) est les 128 premiers caractères du champ 'bio', sans balises HTML.
+        Le bouton "Voir tous les articles de '<author title>'" est un lien vers le détail de l'auteur.
+
+
+Sitemap / Plan du site :
+    • Accueil (index.php) :
+        Liste des 5 derniers articles (Post thumb).
+
+    • Catégories (category_list.php) :
+        Liste des catégories (Category thumb).
+
+        • Catégorie (category_detail.php?id=<int>) :
+            Détail de la catégorie #id.
+            - Titre
+            - Description
+            - Liste des articles (Post thumb) de la catégorie.
+
+    • Auteurs (author_list.php) :
+        Liste des auteurs (Author thumb).
+
+        • Auteur (author_detail.php?id=<int>) :
+            Détail de l'auteur #id.
+            - Nom complet
+            - Biographie
+            - Liste des articles (Post thumb) de l'auteur.
+
+    • Article (post_detail.php?id=<int>) :
+        Détail de l'article #id.
+        - Titre
+        - Description
+        - Liste des articles (Post thumb) de la catégorie.
+
+
+Déplacer les parties HTML communes dans des fichiers PHP à inclures dans les différentes pages.
+
+
+Créer des fonctions pour générer les différents liens.
+
+
+Développer les pages :
+    Développer la page "Accueil" :
+        - Afficher la liste des 5 derniers articles (Post thumb).
+
+    Développer la page "Catégories" (liste) :
+        - Afficher la liste des catégories (Category thumb).
+
+    Développer la page "Catégorie" (détail) :
+        - Afficher le titre et la description de la catégorie.
+        - Afficher la liste des articles de la catégorie (Post thumb).
+
+    Développer la page "Article" (détail) :
+        - Afficher le titre et la description de la catégorie.
+        - Afficher la liste des articles de la catégorie (Post thumb).
+        - Ajouter l'attribut 'style' à la balise div.jumbotron pour configurer l'image de fond (background-image).
+
+    Développer la page "Auteurs" (liste) :
+        - Afficher la liste des auteurs (Author thumb).
+
+    Développer la page "Auteur" (détail) :
+        - Afficher le nom complet et la biographie de l'auteur.
+        - Afficher la liste des articles de l'auteur (Post thumb).
+
+
+Créer des fonctions pour générer les miniatures (thumbs) pour les articles, les catégories et les auteurs,
+et utiliser ses fonctions dans les différentes pages.
+
+
+Mettre en place la réécriture d'urls pour obtenir le résultat suivant :
+
+    URL                Page
+    ---------------------------------------
+    /                  : Accueil
+    /categories        : Catégories (liste)
+    /categories/<int>  : Catégorie (détail)
+    /authors           : Auteurs (liste)
+    /authors/<int>     : Auteur (détail)
+    /posts/<int>       : Article (détail)
+
+
+
+Sur la page "Article", ajouter un formulaire de saisi de commentaire.
+Ces formulaires seront enregistrés au format JSON dans un fichier 'data/comments.json'.
+
+
+Développer l'affichage des commentaires ajoutés.
