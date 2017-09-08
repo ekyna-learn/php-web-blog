@@ -1,38 +1,3 @@
-<?php
-
-/*$components = parse_url($_SERVER['REQUEST_URI']);
-$parts = explode('/', trim($components['path'], '/'));
-
-switch ($parts[0]) {
-    case '':
-        echo 'Page d\'accueil.';
-        break;
-
-    case 'categories':
-        if (isset($parts[1])) {
-            echo 'Détail catégorie';
-            break;
-        }
-
-        echo 'Liste des catégories';
-        break;
-
-    case 'authors':
-        if (isset($parts[1])) {
-            echo 'Détail auteur';
-            break;
-        }
-
-        echo 'Liste des auteurs.';
-        break;
-
-    default:
-        http_response_code(404);
-        echo 'Page not found !';
-        exit;
-}*/
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

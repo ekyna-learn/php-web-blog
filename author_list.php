@@ -36,7 +36,7 @@
 
     <div class="jumbotron">
         <div class="container">
-            <h1>Categories</h1>
+            <h1>Auteurs</h1>
         </div>
     </div>
 
